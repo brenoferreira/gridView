@@ -22,7 +22,7 @@ describe('gridView', function(){
 			lastName: 'Andrade',
 			email: 'andrade@example.com',
 			age: 23
-		},
+		}
 		];
 	});
 
