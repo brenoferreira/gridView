@@ -3,8 +3,29 @@ var GridView = function () {
 };
 
 GridView.prototype.createGrid = function(element, data, headerMappings) {
+	this.createTableHead(element, data, headerMappings);
+
+	var tbody = $('<tbody></tbody>');
+
+	element.append(tbody);
+
+	for(var i = 0; i < data.length; i++)
+	{
+		var tr = $('<tr></tr>');
+		var obj = data[i];
+		for(property in obj)
+		{
+			tr.append('<td>' + obj[property] + '</td>');
+		}
+
+		tbody.append(tr);
+	}
+
+	element.append(tbody);
+};
+
+GridView.prototype.createTableHead = function(element, data, headerMappings) {
 	var thead = $('<thead></thead>');
-	element.append(thead);
 
 	var tr = $('<tr></tr>');
 
@@ -18,5 +39,7 @@ GridView.prototype.createGrid = function(element, data, headerMappings) {
 	}
 
 	thead.append(tr);
+
+	element.append(thead);
 };
 

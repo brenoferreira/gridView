@@ -56,4 +56,34 @@ describe('gridView', function(){
 			expect($('#myTable')).toContainHtml('<thead><tr><th>First Name</th><th>Last Name</th><th>Email</th><th>Age</th></tr></thead>');
 		});
 	});
+
+	describe('table body', function(){
+		it('should append tableBody', function(){
+			var gridView = new GridView();
+			gridView.createGrid($('#myTable'), testObj);
+
+			expect($('#myTable')).toContain('tbody');
+		});
+
+		it('should append object data to table body with first item in array', function(){
+			var gridView = new GridView();
+			gridView.createGrid($('#myTable'), testObj);
+
+			expect($('#myTable')).toContainHtml('<tr><td>Breno</td><td>Ferreira</td><td>breno@example.com</td><td>23</td></tr>')
+		});
+
+		it('should append object data to table body with second item in array', function(){
+			var gridView = new GridView();
+			gridView.createGrid($('#myTable'), testObj);
+
+			expect($('#myTable')).toContainHtml('<tr><td>Rodrigo</td><td>Vidal</td><td>vidal@example.com</td><td>23</td></tr>')
+		});
+
+		it('should append object data to table body with thrid item in array', function(){
+			var gridView = new GridView();
+			gridView.createGrid($('#myTable'), testObj);
+
+			expect($('#myTable')).toContainHtml('<tr><td>Rodrigo</td><td>Andrade</td><td>andrade@example.com</td><td>23</td></tr>')
+		});
+	});
 });
