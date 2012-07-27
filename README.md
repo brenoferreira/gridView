@@ -40,8 +40,7 @@ var mapping = {
 	age: 'Age'
 };
 
-var gridView = new GridView();
-gridView.createGrid($('#myTableMapping'), people, mapping);
+$('#myTableMapping').gridView({data:people,headerMappings:mapping});
 ```
 
 For a more comprehensive sample, check samples in sample folder
