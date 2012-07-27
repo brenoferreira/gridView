@@ -6,7 +6,7 @@ Generates table markup with JSON input. It also supports mapping JSON properties
 
 Markup
 ```html
-<table id="myTable"></table>
+<div id="myTable"></div>
 ```
 
 Javascript
@@ -40,8 +40,7 @@ var mapping = {
 	age: 'Age'
 };
 
-var gridView = new GridView();
-gridView.createGrid($('#myTableMapping'), people, mapping);
+$('#myTableMapping').gridView({data:people,headerMappings:mapping});
 ```
 
 For a more comprehensive sample, check samples in sample folder

@@ -20,9 +20,8 @@ $(function(){
 		}
 	];
 
-	var gridView = new GridView();
 
-	gridView.createGrid($('#myTableWithoutMapping'), people);
+	$('#myTableWithoutMapping').gridView({data:people});
 
 	var mapping = {
 		firstName: 'First Name',
@@ -31,5 +30,6 @@ $(function(){
 		age: 'Age'
 	}
 
-	gridView.createGrid($('#myTableMapping'), people, mapping);
+    $('#myTableMapping').gridView({data:people,headerMappings:mapping});
+
 })
