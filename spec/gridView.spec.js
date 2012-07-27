@@ -100,5 +100,24 @@ describe('gridView', function(){
         it("shoud append tbody inside a table", function(){
             expect($("#myTable table")).toContain("tbody");
         });
+
     })
+    describe("Render table with attributes",function(){
+        it("shoud apply the class attribute in a table",function(){
+            var gridView = new GridView();
+            gridView.createGrid($("#myTable"), testObj,null,{"class":"teste"});
+            expect($("#myTable table")).toHaveClass("teste");
+
+        });
+        it("shoud apply the complex attribute in a table",function(){
+            var gridView = new GridView();
+            gridView.createGrid($("#myTable"), testObj,null,{"class":"teste", "data-cliente":"Victor"});
+            expect($("#myTable table")).toHaveClass("teste");
+            expect($("#myTable table").data("cliente")).toBe("Victor");
+        });
+    });
+
+
+
+
 });

@@ -2,8 +2,8 @@ var GridView = function () {
 	
 };
 
-GridView.prototype.createGrid = function(element, data, headerMappings) {
-    element.append($("<table>"));
+GridView.prototype.createGrid = function(element, data, headerMappings,tableAttr) {
+    element.append($("<table>",tableAttr));
     var $table = element.find("table");
     $table.append(this.createTableHead(element, data, headerMappings));
     $table.append(this.createTableBody(element, data, headerMappings));
