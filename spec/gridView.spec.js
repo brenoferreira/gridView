@@ -2,7 +2,7 @@ describe('gridView', function(){
 	var testObj = null;
 
 	beforeEach(function(){
-		setFixtures('<table id="myTable"></table>')
+		setFixtures('<div id="myTable"></div>')
 
 		testObj = [
 		{
@@ -86,4 +86,19 @@ describe('gridView', function(){
 			expect($('#myTable')).toContainHtml('<tr><td>Rodrigo</td><td>Andrade</td><td>andrade@example.com</td><td>23</td></tr>')
 		});
 	});
+    describe("Render table", function(){
+        beforeEach(function(){
+            var gridView = new GridView();
+            gridView.createGrid($("#myTable"), testObj);
+        });
+        it("shoud append table", function(){
+            expect($("#myTable")).toContain("table");
+        });
+        it("shoud append thead inside a table", function(){
+            expect($("#myTable table")).toContain("thead");
+        });
+        it("shoud append tbody inside a table", function(){
+            expect($("#myTable table")).toContain("tbody");
+        });
+    })
 });

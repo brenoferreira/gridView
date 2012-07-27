@@ -3,9 +3,10 @@ var GridView = function () {
 };
 
 GridView.prototype.createGrid = function(element, data, headerMappings) {
-	this.createTableHead(element, data, headerMappings);
-
-	this.createTableBody(element, data, headerMappings);
+    element.append($("<table>"));
+    var $table = element.find("table");
+    $table.append(this.createTableHead(element, data, headerMappings));
+    $table.append(this.createTableBody(element, data, headerMappings));
 };
 
 GridView.prototype.createTableHead = function(element, data, headerMappings) {
@@ -24,25 +25,25 @@ GridView.prototype.createTableHead = function(element, data, headerMappings) {
 
 	thead.append(tr);
 
-	element.append(thead);
+	return thead;
 };
 
 GridView.prototype.createTableBody = function(element, data, headerMappings) {
-	var tbody = $('<tbody></tbody>');
+    var tbody = $('<tbody></tbody>');
 
-	element.append(tbody);
+    element.append(tbody);
 
-	for(var i = 0; i < data.length; i++)
-	{
-		var tr = $('<tr></tr>');
-		var obj = data[i];
-		for(property in obj)
-		{
-			tr.append('<td>' + obj[property] + '</td>');
-		}
+    for(var i = 0; i < data.length; i++)
+    {
+        var tr = $('<tr></tr>');
+        var obj = data[i];
+        for(property in obj)
+        {
+            tr.append('<td>' + obj[property] + '</td>');
+        }
 
-		tbody.append(tr);
-	}
+        tbody.append(tr);
+    }
 
-	element.append(tbody);
+   return tbody;
 };

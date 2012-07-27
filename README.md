@@ -6,7 +6,7 @@ Generates table markup with JSON input. It also supports mapping JSON properties
 
 Markup
 ```html
-<table id="myTable"></table>
+<div id="myTable"></div>
 ```
 
 Javascript
