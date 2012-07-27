@@ -91,30 +91,47 @@ describe('gridView', function(){
             var gridView = new GridView();
             gridView.createGrid($("#myTable"), testObj);
         });
-        it("shoud append table", function(){
+        it("should append table", function(){
             expect($("#myTable")).toContain("table");
         });
-        it("shoud append thead inside a table", function(){
+        it("should append thead inside a table", function(){
             expect($("#myTable table")).toContain("thead");
         });
-        it("shoud append tbody inside a table", function(){
+        it("should append tbody inside a table", function(){
             expect($("#myTable table")).toContain("tbody");
         });
 
     })
     describe("Render table with attributes",function(){
-        it("shoud apply the class attribute in a table",function(){
+        it("should apply the class attribute in a table",function(){
             var gridView = new GridView();
             gridView.createGrid($("#myTable"), testObj,null,{"class":"teste"});
             expect($("#myTable table")).toHaveClass("teste");
 
         });
-        it("shoud apply the complex attribute in a table",function(){
+        it("should apply the complex attribute in a table",function(){
             var gridView = new GridView();
             gridView.createGrid($("#myTable"), testObj,null,{"class":"teste", "data-cliente":"Victor"});
             expect($("#myTable table")).toHaveClass("teste");
             expect($("#myTable table").data("cliente")).toBe("Victor");
         });
+    });
+
+    describe("if the container is a table",function(){
+        beforeEach(function()   {
+            setFixtures('<div id="myContainerTable"><table></table></div>');
+            var gridView = new GridView();
+            gridView.createGrid($("#myContainerTable table"), testObj);
+        });
+        it("should not render tag table ",function(){
+            expect($("#myContainerTable table").length).toBe(1);
+        });
+        it("should render content inside a table container",function(){
+            expect($("#myContainerTable table")).toContain("thead");
+            expect($("#myContainerTable table")).toContain("tbody");
+        });
+
+
     });
 
 

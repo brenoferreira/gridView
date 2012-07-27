@@ -3,11 +3,21 @@ var GridView = function () {
 };
 
 GridView.prototype.createGrid = function(element, data, headerMappings,tableAttr) {
-    element.append($("<table>",tableAttr));
-    var $table = element.find("table");
+    var $table = this.getTable(element,tableAttr);
     $table.append(this.createTableHead(element, data, headerMappings));
     $table.append(this.createTableBody(element, data, headerMappings));
 };
+
+GridView.prototype.getTable = function(element,tableAttr){
+    var $table;
+    if(element.is("table")) {
+        $table = element;
+    }else{
+        element.append($("<table>",tableAttr));
+        $table = element.find("table");
+    }
+    return $table;
+}
 
 GridView.prototype.createTableHead = function(element, data, headerMappings) {
 	var thead = $('<thead></thead>');
