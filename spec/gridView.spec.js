@@ -50,6 +50,17 @@ describe('gridView', function(){
 
 			expect($('#myTable')).toContainHtml('<thead><tr><th>First Name</th><th>Last Name</th><th>Email</th><th>Age</th></tr></thead>');
 		});
+
+		it('should not append header that is not mapped', function(){
+			var headerMapping = {
+				'firstName': 'First Name',
+				'lastName': 'Last Name'
+			};
+            $('#myTable').gridView({data:testObj,headerMappings:headerMapping});
+
+
+			expect($('#myTable')).toContainHtml('<thead><tr><th>First Name</th><th>Last Name</th></tr></thead>');
+		});
 	});
 
 	describe('table body', function(){
@@ -75,6 +86,17 @@ describe('gridView', function(){
             $('#myTable').gridView({data:testObj});
 
 			expect($('#myTable')).toContainHtml('<tr><td>Rodrigo</td><td>Andrade</td><td>andrade@example.com</td><td>23</td></tr>')
+		});
+
+		it('should not append object data that is not mapped to table body', function(){
+			var headerMapping = {
+				'firstName': 'First Name',
+				'lastName': 'Last Name'
+			};
+            $('#myTable').gridView({data:testObj,headerMappings:headerMapping});
+
+
+			expect($('#myTable')).toContainHtml('<tr><td>Breno</td><td>Ferreira</td></tr>')
 		});
 	});
     describe("Render table", function(){
@@ -118,11 +140,5 @@ describe('gridView', function(){
             expect($("#myContainerTable table")).toContain("thead");
             expect($("#myContainerTable table")).toContain("tbody");
         });
-
-
     });
-
-
-
-
 });
