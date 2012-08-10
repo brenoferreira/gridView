@@ -40,7 +40,7 @@ var mapping = {
 	age: 'Age'
 };
 
-$('#myTableMapping').gridView({data:people,headerMappings:mapping});
+$('#myTable').gridView({data:people,headerMappings:mapping});
 ```
 
 For a more comprehensive sample, check samples in sample folder
