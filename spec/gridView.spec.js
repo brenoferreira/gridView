@@ -141,4 +141,34 @@ describe('gridView', function(){
             expect($("#myContainerTable table")).toContain("tbody");
         });
     });
+
+    describe("ordering table elements",function(){
+        beforeEach(function()   {
+            setFixtures('<div id="myContainerTable"><table></table></div>');
+
+			var headerMapping = {
+				'age': 'Age',
+				'email': 'Email',
+				'firstName': 'First Name',
+				'lastName': 'Last Name'
+			};
+
+            $('#myContainerTable table').gridView({data:testObj, headerMappings:headerMapping});
+        });
+        it("should put headers in the order specified in the mappings ",function(){
+            expect($('#myContainerTable table')).toContainHtml('<thead><tr><th>Age</th><th>Email</th><th>First Name</th><th>Last Name</th></tr></thead>');
+        });
+
+		it('should append object data to table body with first item in array ordered by mappings', function(){
+			expect($('#myContainerTable table')).toContainHtml('<tr><td>23</td><td>breno@example.com</td><td>Breno</td><td>Ferreira</td></tr>');
+		});
+
+		it('should append object data to table body with second item in array ordered by mappings', function(){
+			expect($('#myContainerTable table')).toContainHtml('<tr><td>23</td><td>vidal@example.com</td><td>Rodrigo</td><td>Vidal</td></tr>');
+		});
+
+		it('should append object data to table body with thrid item in array ordered by mappings', function(){
+			expect($('#myContainerTable table')).toContainHtml('<tr><td>23</td><td>andrade@example.com</td><td>Rodrigo</td><td>Andrade</td></tr>');
+		});
+    });
 });

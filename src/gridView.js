@@ -30,13 +30,13 @@
             var tr = $('<tr></tr>');
 
             var firstObject = data[0];
-            for(property in firstObject){
-                if(!headerMappings)
+
+            if(headerMappings)
+                for(mapping in headerMappings)
+                    tr.append('<th>' + headerMappings[mapping] + '</th>');
+            else
+                for(property in firstObject)
                     tr.append('<th>' + property + '</th>');
-                else
-                    if(headerMappings[property])
-                        tr.append('<th>' + headerMappings[property] + '</th>');
-            }
 
             thead.append(tr);
 
@@ -50,9 +50,12 @@
             for(var i = 0; i < data.length; i++){
                 var tr = $('<tr></tr>');
                 var obj = data[i];
-                for(property in obj)
-                        if(!headerMappings || headerMappings[property])
-                            tr.append('<td>' + obj[property] + '</td>');
+                if(headerMappings)
+                    for(mapping in headerMappings)
+                        tr.append('<td>' + obj[mapping] + '</td>');
+                else
+                    for(property in obj)
+                        tr.append('<td>' + obj[property] + '</td>');
 
                 tbody.append(tr);
             }
