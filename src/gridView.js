@@ -26,20 +26,13 @@
 
         function createTableHead(element, data, headerMappings) {
             var thead = $('<thead></thead>');
-
-            var tr = $('<tr></tr>');
-
             var firstObject = data[0];
-
+            
             if(headerMappings)
-                for(mapping in headerMappings)
-                    tr.append('<th>' + headerMappings[mapping] + '</th>');
+               thead.append(appendLine('th', headerMappings, headerMappings));
             else
-                for(property in firstObject)
-                    tr.append('<th>' + property + '</th>');
-
-            thead.append(tr);
-
+               thead.append(appendLine('th', firstObject));
+            
             return thead;
         };
         function createTableBody(element, data, headerMappings) {
@@ -48,20 +41,28 @@
             element.append(tbody);
 
             for(var i = 0; i < data.length; i++){
-                var tr = $('<tr></tr>');
                 var obj = data[i];
                 if(headerMappings)
-                    for(mapping in headerMappings)
-                        tr.append('<td>' + obj[mapping] + '</td>');
+                   tbody.append(appendLine('td', headerMappings, obj));
                 else
-                    for(property in obj)
-                        tr.append('<td>' + obj[property] + '</td>');
-
-                tbody.append(tr);
+                    tbody.append(appendLine('td', obj, obj));
             }
 
             return tbody;
         };
+        
+        function appendLine(tagName, collMappings, lineMapping){
+			var tr = $("<tr></tr>");
+			if(lineMapping)
+				for(var mapping in collMappings)
+				  tr.append('<'+ tagName +'>' + lineMapping[mapping] + '</'+ tagName +'>');
+			 
+			 else
+				for(var mapping in collMappings)
+				  tr.append('<'+ tagName +'>' + mapping + '</'+ tagName +'>');
+			 
+			 return tr;
+        }
 
     };
 })( jQuery );

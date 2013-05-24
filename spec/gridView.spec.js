@@ -171,4 +171,18 @@ describe('gridView', function(){
 			expect($('#myContainerTable table')).toContainHtml('<tr><td>23</td><td>andrade@example.com</td><td>Rodrigo</td><td>Andrade</td></tr>');
 		});
     });
+	
+	 describe("table with header is reload",function(){
+		it('should containing mapped headers even when mapping variable called mapping', function(){
+			var mapping = {
+				'firstName': 'First Name',
+				'lastName': 'Last Name',
+				'email': 'Email',
+				'age': 'Age'
+			};
+			$('#myTable').gridView({data:testObj,headerMappings:mapping});
+
+			expect($('#myTable')).toContainHtml('<thead><tr><th>First Name</th><th>Last Name</th><th>Email</th><th>Age</th></tr></thead>');
+		});
+	});
 });
