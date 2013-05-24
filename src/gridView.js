@@ -6,9 +6,9 @@
             'tableAttr':{}
         }, options);
 
-        var $table = getTable(this,settings.tableAttr);
-        $table.append(createTableHead(this, settings.data, settings.headerMappings));
-        $table.append(createTableBody(this, settings.data, settings.headerMappings));
+        var $table = getTable(this,settings.tableAttr)
+						.append(createTableHead(this, settings.data, settings.headerMappings))
+						.append(createTableBody(this, settings.data, settings.headerMappings));
 
         function getTable(element,tableAttr){
 
